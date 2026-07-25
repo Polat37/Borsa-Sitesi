@@ -596,7 +596,7 @@ if st.sidebar.button("🎯 Çoklu Vade Tarayıcı", use_container_width=True, ty
 if st.sidebar.button("🤖 Yapay Zeka Asistanı", use_container_width=True, type="primary" if st.session_state.aktif_sayfa == "AI_Sohbet" else "secondary"):
     st.session_state.aktif_sayfa = "AI_Sohbet"
     st.rerun()
-if st.sidebar.button("💸 Finansal Özgürlük", use_container_width=True, type="primary" if st.session_state.aktif_sayfa == "FIRE" else "secondary"):
+if st.sidebar.button("💸 Bileşik Getiri Simülatörü", use_container_width=True, type="primary" if st.session_state.aktif_sayfa == "FIRE" else "secondary"):
     st.session_state.aktif_sayfa = "FIRE"
     st.rerun()
 
@@ -929,7 +929,7 @@ elif st.session_state.aktif_sayfa == "AI_Sohbet":
 # SAYFA 5: FIRE (FİNANSAL ÖZGÜRLÜK SİMÜLATÖRÜ)
 # ==========================================
 elif st.session_state.aktif_sayfa == "FIRE":
-    st.title("💸 Bileşik Getiri & Finansal Özgürlük")
+    st.title("💸 Bileşik Getiri Simülasyonu")
     st.markdown("Zamanın ve bileşik getirinin gücünü kullanarak finansal hedeflerinize ne zaman ulaşacağınızı hesaplayın.")
 
     col_input, col_chart = st.columns([1, 2.5])
