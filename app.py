@@ -18,19 +18,22 @@ from firebase_admin import credentials, firestore
 GEMINI_API_KEY = ""
 
 # ==========================================
-# FIREBASE BULUT VERİTABANI BAĞLANTISI
+# FIREBASE BULUT VERİTABANI BAĞLANTISI (GÜNCEL)
 # ==========================================
 if not firebase_admin._apps:
-    if "FIREBASE_KEY" in st.secrets:
+    if "firebase" in st.secrets:
         try:
-            key_dict = json.loads(st.secrets["FIREBASE_KEY"])
-            cred = credentials.Certificate(key_dict)
+            fb_dict = dict(st.secrets["firebase"])
+            if "private_key" in fb_dict:
+                fb_dict["private_key"] = fb_dict["private_key"].replace("\\n", "\n")
+            
+            cred = credentials.Certificate(fb_dict)
             firebase_admin.initialize_app(cred)
         except Exception as e:
             st.error(f"Firebase bağlantı hatası: {e}")
             st.stop()
     else:
-        st.error("⚠️ Firebase Gizli Anahtarı (FIREBASE_KEY) Streamlit Secrets içinde bulunamadı!")
+        st.error("⚠️ Firebase Gizli Anahtarı (st.secrets['firebase']) bulunamadı!")
         st.stop()
 
 db = firestore.client()
